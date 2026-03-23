@@ -3,7 +3,7 @@ import { Raleway, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const raleway = Raleway({
   subsets: ["latin"],
