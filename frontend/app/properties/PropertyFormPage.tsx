@@ -227,16 +227,14 @@ function PropertyForm({
                       €
                     </span>
                     <input
-                      type="number"
-                      min={0}
-                      value={values.rent === 0 ? "" : values.rent}
+                      type="text"
+                      inputMode="numeric"
+                      value={values.rent === 0 ? "" : String(values.rent)}
                       onChange={(event) => {
-                        const rentValue = event.target.value;
-                        updateField(
-                          "rent",
-                          rentValue === "" ? 0 : Number(rentValue),
-                        );
+                        const raw = event.target.value.replace(/[^0-9]/g, "");
+                        updateField("rent", raw === "" ? 0 : Number(raw));
                       }}
+                      placeholder="0"
                       className="flex-1 text-sm font-medium text-brown-dark outline-none"
                     />
                   </div>

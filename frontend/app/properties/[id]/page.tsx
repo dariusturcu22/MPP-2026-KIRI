@@ -14,6 +14,18 @@ import {
 } from "lucide-react";
 import { usePropertyStore } from "@/store/properties";
 import Sidebar from "@/components/Sidebar";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 const METER_READINGS = [
   { id: "1", type: "Electricity", iconBg: "bg-card-tan", status: "Remind" },
@@ -153,11 +165,10 @@ export default function PropertyDetailPage() {
   }
 
   function handleDelete() {
-    const confirmed = confirm(
-      `Delete "${property!.name} — ${property!.address}"?`,
-    );
-    if (!confirmed) return;
     deleteProperty(propertyId);
+    toast.success("Property deleted", {
+      description: `${property!.name} — ${property!.address}`,
+    });
     router.push("/properties");
   }
 
@@ -222,12 +233,30 @@ export default function PropertyDetailPage() {
               >
                 Edit Property
               </button>
-              <button
-                onClick={handleDelete}
-                className="bg-white/15 border border-white/30 px-5 h-9 rounded-full font-bold text-white text-[13px] hover:bg-rose-500/60 transition-colors"
-              >
-                Delete
-              </button>
+              <AlertDialog>
+                <AlertDialogTrigger className="bg-white/15 border border-white/30 px-5 h-9 rounded-full font-bold text-white text-[13px] hover:bg-rose-500/60 transition-colors">
+                  Delete
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete property?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will permanently delete{" "}
+                      <strong>{property.name}</strong> — {property.address}.
+                      This action cannot be undone.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={handleDelete}
+                      className="bg-rose-600 hover:bg-rose-700 text-white"
+                    >
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>
