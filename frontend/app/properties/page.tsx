@@ -7,6 +7,17 @@ import { usePropertyStore } from "@/store/properties";
 import type { Property } from "@/store/properties";
 import Sidebar from "@/components/Sidebar";
 import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const PAGE_SIZE = 5;
 
@@ -34,10 +45,6 @@ export default function PropertiesPage() {
   );
 
   function handleDelete(property: Property) {
-    const confirmed = confirm(
-      `Delete "${property.name} — ${property.address}"?`,
-    );
-    if (!confirmed) return;
     deleteProperty(property.id);
     if (visibleProperties.length === 1 && currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -212,13 +219,33 @@ export default function PropertiesPage() {
                     >
                       <Pencil className="w-3.5 h-3.5 text-slate" />
                     </button>
-                    <button
-                      onClick={() => handleDelete(property)}
-                      title="Delete"
-                      className="w-7 h-7 rounded-full bg-cream-bg border border-cream-warm flex items-center justify-center hover:bg-rose-100 hover:border-rose-200 transition-colors"
-                    >
-                      <Trash2 className="w-3.5 h-3.5 text-slate" />
-                    </button>
+                    <AlertDialog>
+                      <AlertDialogTrigger
+                        title="Delete"
+                        className="w-7 h-7 rounded-full bg-cream-bg border border-cream-warm flex items-center justify-center hover:bg-rose-100 hover:border-rose-200 transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5 text-slate" />
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Delete property?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This will permanently delete{" "}
+                            <strong>{property.name}</strong> —{" "}
+                            {property.address}. This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDelete(property)}
+                            className="bg-rose-600 hover:bg-rose-700 text-white"
+                          >
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </div>
               ))
