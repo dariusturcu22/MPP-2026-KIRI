@@ -64,7 +64,7 @@ const SEED_PROPERTIES: Property[] = [
   {
     id: 2,
     name: "Oxygen Residence",
-    image: "/properties/photo2.jpg",
+    image: "/properties/photo1.jpg",
     address: "Piata Abator, Nr 1, Ap. 56",
     city: "Cluj-Napoca",
     postalCode: "400001",
@@ -80,7 +80,7 @@ const SEED_PROPERTIES: Property[] = [
   {
     id: 3,
     name: "Oxygen Residence",
-    image: "/properties/photo3.jpg",
+    image: "/properties/photo1.jpg",
     address: "Piata Abator, Nr 1, Ap. 127",
     city: "Cluj-Napoca",
     postalCode: "400001",
@@ -121,7 +121,7 @@ const SEED_PROPERTIES: Property[] = [
   {
     id: 5,
     name: "Piata Viteazu",
-    image: "/properties/photo5.jpg",
+    image: "/properties/photo4.jpg",
     address: "Piata Mihai Viteazu, Nr 11-13, Ap. 10",
     city: "Cluj-Napoca",
     postalCode: "400110",
@@ -142,7 +142,7 @@ const SEED_PROPERTIES: Property[] = [
   {
     id: 6,
     name: "Piata Viteazu",
-    image: "/properties/photo6.jpg",
+    image: "/properties/photo4.jpg",
     address: "Piata Mihai Viteazu, Nr 11-13, Ap. 22",
     city: "Cluj-Napoca",
     postalCode: "400110",
@@ -156,7 +156,7 @@ const SEED_PROPERTIES: Property[] = [
   {
     id: 7,
     name: "Piata Viteazu",
-    image: "/properties/photo7.jpg",
+    image: "/properties/photo4.jpg",
     address: "Piata Mihai Viteazu, Nr 11-13, Ap. 40",
     city: "Cluj-Napoca",
     postalCode: "400110",
@@ -183,7 +183,7 @@ const SEED_PROPERTIES: Property[] = [
   {
     id: 8,
     name: "The Nest",
-    image: "/properties/photo8.jpg",
+    image: "/properties/photo2.jpg",
     address: "Strada Scorarilor, Nr 12, Ap. 30",
     city: "Cluj-Napoca",
     postalCode: "400200",
