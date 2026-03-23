@@ -1,0 +1,21 @@
+# root .gitignore
+
+# Node
+node_modules/
+
+# Next.js build output
+frontend/.next/
+frontend/out/
+
+# Environment variables — never commit these
+.env
+.env.local
+.env*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
