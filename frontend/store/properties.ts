@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { z } from "zod";
+import { property, z } from "zod";
+import { trackEvent } from "@/lib/activity";
 
 export const TenantSchema = z.object({
   initials: z.string().min(1).max(3),
@@ -215,10 +216,12 @@ export const usePropertyStore = create<PropertyStore>((set, get) => ({
       dateAdded: today(),
       lastUpdated: today(),
     };
+    trackEvent("property_created", data.name);
     set((state) => ({ properties: [...state.properties, newProperty] }));
   },
 
   updateProperty: (id, data) => {
+    trackEvent("property_edited", `ID: ${id} - ${data.name}`);
     set((state) => ({
       properties: state.properties.map((property) =>
         property.id === id
@@ -229,6 +232,8 @@ export const usePropertyStore = create<PropertyStore>((set, get) => ({
   },
 
   deleteProperty: (id) => {
+    const property = get().getPropertyById(id);
+    trackEvent("property_deleted", property?.name || `ID: ${id}`);
     set((state) => ({
       properties: state.properties.filter((property) => property.id !== id),
     }));

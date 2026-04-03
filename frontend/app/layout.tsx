@@ -3,6 +3,7 @@ import { Raleway, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { ActivityTracker } from "@/components/ActivityTracker";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", geist.variable)}>
       <body>
+        <ActivityTracker />
         {children}
         <Toaster richColors position="bottom-right" />
       </body>

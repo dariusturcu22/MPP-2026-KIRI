@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { trackEvent } from "@/lib/activity";
 
 const PAGE_SIZE = 5;
 
@@ -57,6 +58,9 @@ export default function PropertiesPage() {
   function handleSearch(value: string) {
     setSearch(value);
     setCurrentPage(1);
+    if (value.trim().length >= 3) {
+      trackEvent("search", value.trim());
+    }
   }
 
   return (

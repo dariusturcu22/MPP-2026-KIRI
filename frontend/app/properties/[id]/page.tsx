@@ -26,6 +26,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { useEffect } from "react";
+import { trackEvent } from "@/lib/activity";
 
 const METER_READINGS = [
   { id: "1", type: "Electricity", iconBg: "bg-card-tan", status: "Remind" },
@@ -147,6 +149,12 @@ export default function PropertyDetailPage() {
 
   const propertyId = Number(params.id);
   const property = getPropertyById(propertyId);
+
+  useEffect(() => {
+    if (property) {
+      trackEvent("property_viewed", property.name);
+    }
+  }, [property]);
 
   if (!property) {
     return (
